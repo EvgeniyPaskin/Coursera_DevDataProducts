@@ -11,7 +11,7 @@ shinyUI(fluidPage(
         sidebarLayout(
                 sidebarPanel(
                         
-                        
+                        ## Adding controls
                         selectInput("Year", 
                                     label = "Choose a Year to display",
                                     choices = list(2014, 2015, 2016),
@@ -27,6 +27,8 @@ shinyUI(fluidPage(
                                     label = "Set up a scaling factor for visualisations",
                                     min = 1, max = 15, value = c(10)),
                         
+                        
+                        ## Adding documentation
                         helpText( "Read Me:", tags$br(),
                                  "Cinema market map visualisation ShinyApp visualizes Russian Cinema theaters performance:",tags$br(),
                                  "1. The user can select one of 3 years of statistics to visualise: 2014-2016",tags$br(),

@@ -13,7 +13,7 @@ library(dplyr)
 
 FFF <- readRDS("CCC.RDS")
 
-# Define server logic required to draw a histogram
+# Define server logic required to draw a map with leaflet  and reactive calculations
 shinyServer(function(input, output) {
    
  
@@ -33,20 +33,20 @@ shinyServer(function(input, output) {
                                 lng = ~Lon, 
                                 lat = ~Lat, 
                                 weight = 1,
-                                radius = ~sqrt(ValueToShow)/input$ScaleFactor, 
-                                popup = ~ paste("<b>", Name,"</b>",
+                                radius = ~sqrt(ValueToShow)/input$ScaleFactor,  ## Scaling circles area
+                                popup = ~ paste("<b>", Name,"</b>",             ## Adding info to popup balloon
                                                 "<br />  Revenue,m =", 
-                                                round(Revenue/10^6, digits = 0), 
+                                                round(Revenue/10^6, digits = 0),   ## Adding info to popup balloon
                                                 "<br /> Tickets, ths = ", 
                                                 round(Tickets/10^3, digits = 0),
                                                 "<br /> Average price, RUR = ",
-                                                round(Revenue/Tickets, digits = 0)),
+                                                round(Revenue/Tickets, digits = 0)), ## Adding info to popup balloon
                                 color = ~factpal(TopCircuitName),
                                 opacity = 0.95
                         ) %>%
                         
                         addLegend(pal = factpal, values = ~TopCircuitName, opacity = 1) %>%
-                        setView(lat = 55.74, lng = 37.67, zoom = 10)
+                        setView(lat = 55.74, lng = 37.67, zoom = 10) ## Setting center of map to Moscow
                 
         
   })
